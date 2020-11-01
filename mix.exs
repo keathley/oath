@@ -3,7 +3,7 @@ defmodule Norm.MixProject do
 
   def project do
     [
-      app: :norm,
+      app: :vow,
       version: "0.1.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
@@ -21,8 +21,8 @@ defmodule Norm.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:decorator, "~> 1.3"},
-      {:decorator, path: "..//decorator"},
+      {:decorator, "~> 1.3"},
+      {:ex_doc, "~> 0.23"},
     ]
   end
 end
