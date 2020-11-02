@@ -31,25 +31,27 @@ defmodule OathTest do
     end
   end
 
-  test "vow can specify pre and post conditions" do
-    assert Mod.add(1, 2) == 3
-    assert_raise Oath.ContractError, fn ->
-      Mod.add(7, 3)
+  describe "Oath" do
+    test "can specify pre and post conditions" do
+      assert Mod.add(1, 2) == 3
+      assert_raise Oath.ContractError, fn ->
+        Mod.add(7, 3)
+      end
+      assert_raise Oath.ContractError, fn ->
+        Mod.add("foo", 3)
+      end
+      assert_raise Oath.ContractError, fn ->
+        Mod.add(3, "foo")
+      end
     end
-    assert_raise Oath.ContractError, fn ->
-      Mod.add("foo", 3)
-    end
-    assert_raise Oath.ContractError, fn ->
-      Mod.add(3, "foo")
-    end
-  end
 
-  test "vow ensures that pre and post conditions return boolean values" do
-    assert_raise Oath.InvalidContractError, fn ->
-      Mod.invalid_pre()
-    end
-    assert_raise Oath.InvalidContractError, fn ->
-      Mod.invalid_post()
+    test "ensures that pre and post conditions return boolean values" do
+      assert_raise Oath.InvalidContractError, fn ->
+        Mod.invalid_pre()
+      end
+      assert_raise Oath.InvalidContractError, fn ->
+        Mod.invalid_post()
+      end
     end
   end
 end
