@@ -9,6 +9,9 @@ defmodule OathTest do
     @decorate post("the result must be greater then i or j", fn(i, j, result) ->
       result > i && result > j
     end)
+    @decorate post("numbers add up", fn a, b, result ->
+      a + b == result
+    end)
     def add(i, j) do
       if i == 7 do
         (i*-1) + j

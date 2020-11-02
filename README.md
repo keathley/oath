@@ -2,7 +2,7 @@
 
 ## Names
 
-This project was originally called "Vow", but it looks like someone snagged that on hex. So, I changed it to Oath.
+This project was originally called "Vow", but it looks like someone snagged that on hex. So, I had to change it to Oath.
 
 ## Description
 
@@ -61,6 +61,33 @@ Mod.add(7, 2)
   result
   => -5
 ```
+
+Contract predicates don't have to be pure. Its often useful to use contracts
+as a way of validating the functions environment and any of the functions side-effects.
+
+```elixir
+@doc """
+Stores a name in the database.
+"""
+@decorate pre("name must not be in db", fn name -> !in_database?(name) end)
+@decorate post("Name must be normalized in the db", fn name, _result ->
+  fetch_from_db(name) == String.capitalize(name)
+end)
+def store_in_db(name) do
+  #...
+end
+```
+
+## When to enable contracts?
+
+Classically, you should only enable contracts in dev and test modes. You want
+to avoid enabling contracts in production as this will lower your production
+performance due to additional checking. It also means that you won't be able
+to write side-effecting contracts, which you'll want to be able to do in testing
+modes.
+
+By default, contracts are disabled and will be compiled away so you won't need
+to do anything for production builds.
 
 ## Installation
 
