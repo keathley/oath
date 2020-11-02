@@ -20,6 +20,7 @@ defmodule Oath do
   """
   use Decorator.Define, [pre: 2, post: 2]
 
+  @doc false
   def pre(text, condition, body, context) do
     arg_names = Enum.map(context.args, fn {name, _, _} -> name end)
     fn_name = fn_name(context)
@@ -46,6 +47,7 @@ defmodule Oath do
     end
   end
 
+  @doc false
   def post(text, condition, body, context) do
     arg_names = Enum.map(context.args, fn {name, _, _} -> name end) ++ [:result]
     fn_name = fn_name(context)
