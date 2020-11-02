@@ -49,7 +49,7 @@ Calling this function with contracts enabled will cause an exception to be raise
 
 ```elixir
 Mod.add(7, 2)
- ** (Oath.ContractError) Mod.add/2 precondition: 'the result must be greater then a or b' failed with input:
+ ** (Oath.ContractError) Mod.add/2 postcondition: 'the result must be greater then a or b' failed with input:
   Arguments:
 
   a
