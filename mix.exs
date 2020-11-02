@@ -1,19 +1,19 @@
-defmodule Vow.MixProject do
+defmodule Oath.MixProject do
   use Mix.Project
 
   @version "0.1.0"
 
   def project do
     [
-      name: "Vow",
-      app: :vow,
+      name: "Oath",
+      app: :oath,
       version: @version,
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
       package: package(),
-      source_url: "https://github.com/keathley/vow",
+      source_url: "https://github.com/keathley/oath",
       docs: docs()
     ]
   end
@@ -36,23 +36,23 @@ defmodule Vow.MixProject do
 
   defp description do
     """
-    Vow provides a system for Design by Contract in Elixir.
+    Oath provides a system for Design by Contract in Elixir.
     """
   end
 
   def package do
     [
-      name: "vow",
+      name: "oath",
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/keathley/vow"}
+      links: %{"GitHub" => "https://github.com/keathley/oath"}
     ]
   end
 
   def docs do
     [
-      main: "Vow",
+      main: "Oath",
       source_ref: "v#{@version}",
-      source_url: "https://github.com/keathley/vow"
+      source_url: "https://github.com/keathley/oath"
     ]
   end
 end

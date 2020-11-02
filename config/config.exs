@@ -1,4 +1,4 @@
 import Config
 
-config :vow,
+config :oath,
   enable_contracts: true

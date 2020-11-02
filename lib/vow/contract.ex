@@ -1,4 +1,4 @@
-defmodule Vow.Contract do
+defmodule Oath.Contract do
   @moduledoc false
 
   def new(type, description, condition, args, arg_names, fn_name) do
@@ -45,10 +45,10 @@ defmodule Vow.Contract do
         true
 
       false ->
-        raise Vow.ContractError, explain(contract)
+        raise Oath.ContractError, explain(contract)
 
       _ ->
-        raise Vow.InvalidContractError
+        raise Oath.InvalidContractError
     end
   end
 end

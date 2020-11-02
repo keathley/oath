@@ -1,4 +1,4 @@
-defmodule Vow.ContractError do
+defmodule Oath.ContractError do
   @moduledoc false
   defexception [:message]
 
@@ -7,7 +7,7 @@ defmodule Vow.ContractError do
   end
 end
 
-defmodule Vow.InvalidContractError do
+defmodule Oath.InvalidContractError do
   @moduledoc false
   defexception [:message]
 

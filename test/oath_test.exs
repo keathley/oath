@@ -1,8 +1,8 @@
-defmodule VowTest do
+defmodule OathTest do
   use ExUnit.Case
 
   defmodule Mod do
-    use Vow
+    use Oath
 
     @decorate pre("i is an integer", fn(i, _) -> is_integer(i) end)
     @decorate pre("j is an integer", fn(_, j) -> is_integer(j) end)
@@ -30,22 +30,22 @@ defmodule VowTest do
 
   test "vow can specify pre and post conditions" do
     assert Mod.add(1, 2) == 3
-    assert_raise Vow.ContractError, fn ->
+    assert_raise Oath.ContractError, fn ->
       Mod.add(7, 3)
     end
-    assert_raise Vow.ContractError, fn ->
+    assert_raise Oath.ContractError, fn ->
       Mod.add("foo", 3)
     end
-    assert_raise Vow.ContractError, fn ->
+    assert_raise Oath.ContractError, fn ->
       Mod.add(3, "foo")
     end
   end
 
   test "vow ensures that pre and post conditions return boolean values" do
-    assert_raise Vow.InvalidContractError, fn ->
+    assert_raise Oath.InvalidContractError, fn ->
       Mod.invalid_pre()
     end
-    assert_raise Vow.InvalidContractError, fn ->
+    assert_raise Oath.InvalidContractError, fn ->
       Mod.invalid_post()
     end
   end

@@ -1,5 +1,22 @@
-defmodule Vow do
+defmodule Oath do
   @moduledoc """
+  Oath provides a system for utilizing design by contract in elixir.
+
+  ## Pre and Post conditions
+
+  You can decorate any of your functions with preconditions and postconditions.
+
+  ```elixir
+  @decorator pre("inputs are ints", & is_integer(&1) && is_integer(&2))
+  @decorate post("the result must be greater than a or b", fn a, b, result ->
+    result >= a && result >= b
+  end)
+  def add(a, b) do
+    a + b
+  end
+  ```
+
+  If your callers provide incorrect data or your function returns incorrect repsonses, an exception will be thrown.
   """
   use Decorator.Define, [pre: 2, post: 2]
 
@@ -9,7 +26,7 @@ defmodule Vow do
 
     if enabled?() do
       quote do
-        contract = Vow.Contract.new(
+        contract = Oath.Contract.new(
           :pre,
           unquote(text),
           unquote(condition),
@@ -18,7 +35,7 @@ defmodule Vow do
           unquote(fn_name)
         )
 
-        Vow.Contract.validate(contract)
+        Oath.Contract.validate(contract)
 
         unquote(body)
       end
@@ -37,7 +54,7 @@ defmodule Vow do
       quote do
         result = unquote(body)
 
-        contract = Vow.Contract.new(
+        contract = Oath.Contract.new(
           :post,
           unquote(text),
           unquote(condition),
@@ -46,7 +63,7 @@ defmodule Vow do
           unquote(fn_name)
         )
 
-        Vow.Contract.validate(contract)
+        Oath.Contract.validate(contract)
 
         result
       end
@@ -63,7 +80,7 @@ defmodule Vow do
   end
 
   defp enabled? do
-    Application.get_env(:vow, :enable_contracts, false)
+    Application.get_env(:oath, :enable_contracts, false)
   end
 end
 

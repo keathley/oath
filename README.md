@@ -1,6 +1,12 @@
-# Vow
+# Oath
 
-Vow provides a system for design by contract in elixir. It uses the excellent,
+## Names
+
+This project was originally called "Vow", but it looks like someone snagged that on hex. So, I changed it to Oath.
+
+## Description
+
+Oath provides a system for design by contract in elixir. It uses the excellent,
 `:decorator` library by @arjan.
 
 ## Usage
@@ -10,7 +16,7 @@ Typically this will be development and test only.
 
 ```elixir
 # config/dev.exs
-config :vow,
+config :oath,
   enable_contracts: true
 ```
 
@@ -23,7 +29,7 @@ We'll use an example function with a broken implementation as a demonstration:
 
 ```elixir
 defmodule Mod do
-  use Vow
+  use Oath
 
   @decorate pre("inputs are ints", & is_integer(&1) && is_integer(&2))
   @decorate post("the result must be greater than a or b", fn a, b, result ->
@@ -43,7 +49,7 @@ Calling this function with contracts enabled will cause an exception to be raise
 
 ```elixir
 Mod.add(7, 2)
- ** (Vow.ContractError) Mod.add/2 precondition: 'the result must be greater then a or b' failed with input:
+ ** (Oath.ContractError) Mod.add/2 precondition: 'the result must be greater then a or b' failed with input:
   Arguments:
 
   a
@@ -61,7 +67,7 @@ Mod.add(7, 2)
 ```elixir
 def deps do
   [
-    {:vow, "~> 0.1.0"},
+    {:oath, "~> 0.1.0"},
   ]
 end
 ```
