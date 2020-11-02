@@ -42,7 +42,7 @@ defmodule Vow.MixProject do
 
   def package do
     [
-      name: "Vow",
+      name: "vow",
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/keathley/vow"}
     ]
