@@ -34,14 +34,16 @@ defmodule OathTest do
   describe "Oath" do
     test "can specify pre and post conditions" do
       assert Mod.add(1, 2) == 3
-      assert_raise Oath.ContractError, fn ->
-        Mod.add(7, 3)
-      end
-      assert_raise Oath.ContractError, fn ->
+      
+      assert_raise Oath.ContractError, ~r/ precondition: 'i is an integer' /, fn ->
         Mod.add("foo", 3)
       end
-      assert_raise Oath.ContractError, fn ->
+      assert_raise Oath.ContractError, ~r/ precondition: 'j is an integer' /, fn ->
         Mod.add(3, "foo")
+      end
+
+      assert_raise Oath.ContractError, ~r/ postcondition: 'the result must be greater then i or j' /, fn ->
+        Mod.add(7, 3)
       end
     end
 
