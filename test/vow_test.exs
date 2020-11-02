@@ -6,11 +6,12 @@ defmodule VowTest do
 
     @decorate pre("i is an integer", fn(i, _) -> is_integer(i) end)
     @decorate pre("j is an integer", fn(_, j) -> is_integer(j) end)
-    @decorate post("the result must be greater then i or j",
-               fn(i, j, result) -> result > i && result > j end)
+    @decorate post("the result must be greater then i or j", fn(i, j, result) ->
+      result > i && result > j
+    end)
     def add(i, j) do
       if i == 7 do
-        i - 7 + j
+        (i*-1) + j
       else
         i + j
       end

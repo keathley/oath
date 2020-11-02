@@ -51,5 +51,4 @@ defmodule Vow.Contract do
         raise Vow.InvalidContractError
     end
   end
-
 end
