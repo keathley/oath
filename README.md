@@ -23,7 +23,7 @@ config :oath,
 After enabling contracts, you can add `pre` and `post` conditions to your functions.
 Preconditions are always run before your function body. Postconditions are run after
 your function body executes and will be provided the result from your function
-call.
+call. You can have any number of pre and post conditions for each function clause.
 
 We'll use an example function with a broken implementation as a demonstration:
 
@@ -31,8 +31,9 @@ We'll use an example function with a broken implementation as a demonstration:
 defmodule Mod do
   use Oath
 
-  @decorate pre("inputs are ints", & is_integer(&1) && is_integer(&2))
-  @decorate post("the result must be greater than a or b", fn a, b, result ->
+  @decorate pre("a is an integer", fn(a, _) -> is_integer(a) end)
+  @decorate pre("b is an integer", fn(_, b) -> is_integer(b) end)
+  @decorate post("the result must be greater then a or b", fn(a, b, result) ->
     result >= a && result >= b
   end)
   def add(a, b) do
@@ -69,6 +70,7 @@ as a way of validating the functions environment and any of the functions side-e
 @doc """
 Stores a name in the database.
 """
+@decorate pre("name must be a string", & is_binary(&1))
 @decorate pre("name must not be in db", fn name -> !in_database?(name) end)
 @decorate post("Name must be normalized in the db", fn name, _result ->
   fetch_from_db(name) == String.capitalize(name)
