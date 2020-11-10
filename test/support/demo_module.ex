@@ -1,5 +1,5 @@
-defmodule Vow.DemoModule do
-  use Vow
+defmodule Oath.DemoModule do
+  use Oath
 
   @decorate pre("i is an integer", fn(i, _) -> is_integer(i) end)
   @decorate pre("j is an integer", fn(_, j) -> is_integer(j) end)
