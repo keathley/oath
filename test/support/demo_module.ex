@@ -3,7 +3,7 @@ defmodule Oath.DemoModule do
 
   @decorate pre("i is an integer", fn(i, _) -> is_integer(i) end)
   @decorate pre("j is an integer", fn(_, j) -> is_integer(j) end)
-  @decorate post("the result must be greater then i or j", fn(i, j, result) ->
+  @decorate post("the result must be greater than i or j", fn(i, j, result) ->
     result > i && result > j
   end)
   @doc """
