@@ -33,7 +33,7 @@ defmodule Mod do
 
   @decorate pre("a is an integer", fn(a, _) -> is_integer(a) end)
   @decorate pre("b is an integer", fn(_, b) -> is_integer(b) end)
-  @decorate post("the result must be greater then a or b", fn(a, b, result) ->
+  @decorate post("the result must be greater than a or b", fn(a, b, result) ->
     result >= a && result >= b
   end)
   def add(a, b) do
@@ -50,7 +50,7 @@ Calling this function with contracts enabled will cause an exception to be raise
 
 ```elixir
 Mod.add(7, 2)
- ** (Oath.ContractError) Mod.add/2 postcondition: 'the result must be greater then a or b' failed with input:
+ ** (Oath.ContractError) Mod.add/2 postcondition: 'the result must be greater than a or b' failed with input:
   Arguments:
 
   a
