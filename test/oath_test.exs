@@ -39,7 +39,7 @@ defmodule OathTest do
         Mod.add("foo", 3)
       end
       assert_raise Oath.ContractError, ~r/ precondition: 'j is an integer' /, fn ->
-        Mod.add(3, "foo")
+        Mod.add(3, [stuff: "foo"])
       end
 
       assert_raise Oath.ContractError, ~r/ postcondition: 'the result must be greater than i or j' /, fn ->

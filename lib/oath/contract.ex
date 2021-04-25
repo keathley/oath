@@ -27,7 +27,7 @@ defmodule Oath.Contract do
     args =
       contract.args
       |> Enum.zip(contract.arg_names)
-      |> Enum.map(fn {arg, name} -> "\t#{name}\n\t=> #{arg}" end)
+      |> Enum.map(fn {arg, name} -> "\t#{name}\n\t=> #{inspect arg}" end)
       |> Enum.join("\n\n")
 
     """

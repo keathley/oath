@@ -20,6 +20,14 @@ config :oath,
   enable_contracts: true
 ```
 
+If you want to ensure contracts are compiled for any dependencies you may need
+to force a recompilation of your dependencies like so:
+
+```
+mix deps.compile --all --force
+MIX_ENV=test mix deps.compile --all --force
+```
+
 After enabling contracts, you can add `pre` and `post` conditions to your functions.
 Preconditions are always run before your function body. Postconditions are run after
 your function body executes and will be provided the result from your function
@@ -96,7 +104,7 @@ to do anything for production builds.
 ```elixir
 def deps do
   [
-    {:oath, "~> 0.1.0"},
+    {:oath, "~> 0.1"},
   ]
 end
 ```
